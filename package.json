@@ -14,7 +14,8 @@
         "antd": "^5.12.5",
         "iter-tools": "^7.5.3",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "react-hook-form": "^7.49.2"
     },
     "devDependencies": {
         "@types/react": "^18.2.43",

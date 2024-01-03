@@ -7,6 +7,11 @@
     width: 100%;
 }
 
+@font-face {
+    font-family: 'jet';
+    src: url('../src/assets/fonts/JetBrainsMono-2.304/fonts/ttf/JetBrainsMonoNL-Regular.ttf');
+}
+
 html {
     margin-right: calc(-1 * (100vw - 100%));
     overflow-x: hidden;
