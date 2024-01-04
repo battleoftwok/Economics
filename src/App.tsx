@@ -1,47 +1,12 @@
 import { Input } from 'antd'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-
-interface Parameter {
-    name: string
-    ownAircraft: number
-    prototypeAircraft: number
-    unit: string
-}
-
-type TableState = { [index: number]: Parameter }
-
-const Default: TableState = Object.assign([
-    {
-        name: 'Крейсерская скорость',
-        ownAircraft: 600,
-        prototypeAircraft: 540,
-        unit: 'м/с',
-    },
-    {
-        name: 'Крейсерская высота',
-        ownAircraft: 8,
-        prototypeAircraft: 8,
-        unit: 'км',
-    },
-    {
-        name: 'Расчетная дальность полета',
-        ownAircraft: 3000,
-        prototypeAircraft: 2869,
-        unit: 'км',
-    },
-    {
-        name: 'Масса пустого самолета',
-        ownAircraft: 13800,
-        prototypeAircraft: 13800,
-        unit: 'кг',
-    },
-])
+import { Default, Form, TableState } from './const'
 
 export const App = () => {
     const [init, setInit] = useState<TableState>(Default)
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit } = useForm<Form>()
 
     const handleOnChange = (props: {
         index: number
@@ -59,7 +24,7 @@ export const App = () => {
 
     return (
         <form
-            onSubmit={() => handleSubmit((data) => console.log(data))}
+            onSubmit={handleSubmit((data) => console.log(data))}
             className="mx-auto w-min font-jet"
         >
             <table className="border-collapse border border-slate-300">
@@ -90,6 +55,7 @@ export const App = () => {
                                 <Input
                                     defaultValue={param[1].ownAircraft}
                                     {...register(`Own.${param[1].name}`, {
+                                        // required: true,
                                         onChange: (event) =>
                                             handleOnChange({
                                                 index: i,
@@ -99,7 +65,7 @@ export const App = () => {
                                                 ),
                                             }),
                                     })}
-                                    className={`font-jet text-center border-white hover:border-slate-100 hover:bg-slate-100
+                                    className={`font-jet text-base text-center border-white hover:border-slate-100 hover:bg-slate-100
                                                  focus:bg-white rounded-none focus:border-white`}
                                 />
                             </td>
@@ -108,6 +74,7 @@ export const App = () => {
                                 <Input
                                     defaultValue={param[1].prototypeAircraft}
                                     {...register(`Prototype.${param[1].name}`, {
+                                        // required: true,
                                         onChange: (event) =>
                                             handleOnChange({
                                                 index: i,
@@ -117,7 +84,7 @@ export const App = () => {
                                                 ),
                                             }),
                                     })}
-                                    className="font-jet text-center border-white hover:border-slate-100 hover:bg-slate-100
+                                    className="font-jet text-base text-center border-white hover:border-slate-100 hover:bg-slate-100
                                                  focus:bg-white rounded-none focus:border-white"
                                 />
                             </td>
@@ -130,7 +97,7 @@ export const App = () => {
                 </tbody>
             </table>
 
-            <button type="submit">Нажми</button>
+            <button type="submit">Рассчитать</button>
         </form>
     )
 }
